@@ -47,6 +47,11 @@ namespace Microsoft.EntityFrameworkCore.Diagnostics
         public virtual EntityEntry EntityEntry { get; }
 
         /// <summary>
+        ///     The property.
+        /// </summary>
+        new public virtual IProperty Property => (IProperty)base.Property;
+
+        /// <summary>
         ///     The old value.
         /// </summary>
         public virtual object OldValue { get; }

@@ -258,8 +258,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                     column.IsNullable = false;
                 }
 
-                var columnMapping = new ColumnMappingBase(
-                    property, column, property.FindRelationalTypeMapping()!, tableMapping);
+                var columnMapping = new ColumnMappingBase(property, column, tableMapping);
                 tableMapping.ColumnMappings.Add(columnMapping);
                 column.PropertyMappings.Add(columnMapping);
 
@@ -352,8 +351,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                             column.IsNullable = false;
                         }
 
-                        var columnMapping = new ColumnMapping(
-                            property, column, property.FindRelationalTypeMapping(mappedTable)!, tableMapping);
+                        var columnMapping = new ColumnMapping(property, column, tableMapping);
                         tableMapping.ColumnMappings.Add(columnMapping);
                         column.PropertyMappings.Add(columnMapping);
 
@@ -444,8 +442,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                         column.IsNullable = false;
                     }
 
-                    var columnMapping = new ViewColumnMapping(
-                        property, column, property.FindRelationalTypeMapping(mappedView)!, viewMapping);
+                    var columnMapping = new ViewColumnMapping(property, column, viewMapping);
                     viewMapping.ColumnMappings.Add(columnMapping);
                     column.PropertyMappings.Add(columnMapping);
 
@@ -550,8 +547,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                         column.IsNullable = false;
                     }
 
-                    var columnMapping = new SqlQueryColumnMapping(
-                        property, column, property.FindRelationalTypeMapping(mappedQuery)!, queryMapping);
+                    var columnMapping = new SqlQueryColumnMapping(property, column, queryMapping);
                     queryMapping.ColumnMappings.Add(columnMapping);
                     column.PropertyMappings.Add(columnMapping);
 
@@ -631,15 +627,15 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
 
         private static void AddTVFs(RelationalModel relationalModel)
         {
-            var model = (IConventionModel)relationalModel.Model;
-            foreach (DbFunction function in model.GetDbFunctions())
+            var model = relationalModel.Model;
+            foreach (var function in relationalModel.Model.GetDbFunctions())
             {
                 var entityType = function.IsScalar
                     ? null
                     : model.FindEntityType(function.ReturnType.GetGenericArguments()[0]);
                 if (entityType == null)
                 {
-                    GetOrCreateStoreFunction(function, relationalModel);
+                    GetOrCreateStoreFunction((DbFunction)function, relationalModel);
                     continue;
                 }
 
@@ -648,7 +644,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                     continue;
                 }
 
-                var functionMapping = CreateFunctionMapping(entityType, entityType, function, relationalModel, @default: false);
+                var functionMapping = CreateFunctionMapping(entityType, entityType, (DbFunction)function, relationalModel, @default: false);
 
                 if (entityType.FindRuntimeAnnotationValue(RelationalAnnotationNames.FunctionMappings)
                     is not List<FunctionMapping> functionMappings)
@@ -700,8 +696,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                     column.IsNullable = false;
                 }
 
-                var columnMapping = new FunctionColumnMapping(
-                    property, column, property.FindRelationalTypeMapping(mappedFunction)!, functionMapping);
+                var columnMapping = new FunctionColumnMapping(property, column, functionMapping);
                 functionMapping.ColumnMappings.Add(columnMapping);
                 column.PropertyMappings.Add(columnMapping);
 
@@ -756,7 +751,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                     continue;
                 }
 
-                var entityType = (IConventionEntityType)entityTypeMapping.EntityType;
+                var entityType = (IEntityType)entityTypeMapping.EntityType;
                 foreach (var foreignKey in entityType.GetForeignKeys())
                 {
                     var firstPrincipalMapping = true;
@@ -843,7 +838,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
 
                         if (entityTypeMapping.IncludesDerivedTypes
                             && foreignKey.DeclaringEntityType != entityType
-                            && entityType.FindPrimaryKey() is IConventionKey primaryKey
+                            && entityType.FindPrimaryKey() is IKey primaryKey
                             && foreignKey.Properties.SequenceEqual(primaryKey.Properties))
                         {
                             // The identifying FK constraint is needed to be created only on the table that corresponds

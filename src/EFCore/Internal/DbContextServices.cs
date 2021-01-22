@@ -114,7 +114,7 @@ namespace Microsoft.EntityFrameworkCore.Internal
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
         public virtual IModel Model
-            => _model ??= CreateModel(CoreOptions?.Model);
+            => _model ??= CreateModel((IModel)CoreOptions?.Model);
 
         private CoreOptionsExtension CoreOptions
             => _contextOptions?.FindExtension<CoreOptionsExtension>();

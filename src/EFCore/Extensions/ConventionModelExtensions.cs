@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -42,7 +43,7 @@ namespace Microsoft.EntityFrameworkCore
             [NotNull] Type type,
             [NotNull] string definingNavigationName,
             [NotNull] IConventionEntityType definingEntityType)
-            => (IConventionEntityType?)((IModel)model).FindEntityType(type, definingNavigationName, definingEntityType);
+            => (IConventionEntityType?)((IReadOnlyModel)model).FindEntityType(type, definingNavigationName, definingEntityType);
 
         /// <summary>
         ///     Gets the entity types matching the given type.
@@ -146,12 +147,12 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="type"> The base type. </param>
         /// <param name="condition"> An optional condition for filtering entity types. </param>
         /// <returns> List of entity types corresponding to the least derived types from the given. </returns>
-        public static IReadOnlyList<IConventionEntityType> FindLeastDerivedEntityTypes(
+        public static IEnumerable<IConventionEntityType> FindLeastDerivedEntityTypes(
             [NotNull] this IConventionModel model,
             [NotNull] Type type,
             [CanBeNull] Func<IConventionEntityType, bool>? condition = null)
-            => Check.NotNull((Model)model, nameof(model))
-                .FindLeastDerivedEntityTypes(type, condition);
+            => ((IReadOnlyModel)model).FindLeastDerivedEntityTypes(type, condition == null ? null : t => condition((IConventionEntityType)t))
+                .Cast<IConventionEntityType>();
 
         /// <summary>
         ///     <para>
@@ -324,7 +325,7 @@ namespace Microsoft.EntityFrameworkCore
         ///     explicitly in cases where the automatic execution is not possible.
         /// </summary>
         /// <param name="model"> The model to finalize. </param>
-        /// <returns> The finalized <see cref="IModel" />. </returns>
+        /// <returns> The finalized <see cref="IReadOnlyModel" />. </returns>
         public static IModel FinalizeModel([NotNull] this IConventionModel model)
             => ((Model)model).FinalizeModel();
     }

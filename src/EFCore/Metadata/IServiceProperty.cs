@@ -6,19 +6,19 @@
 namespace Microsoft.EntityFrameworkCore.Metadata
 {
     /// <summary>
-    ///     A <see cref="IPropertyBase" /> in the Entity Framework model that represents an
-    ///     injected service from the <see cref="DbContext" />.
+    ///     <para>
+    ///         A <see cref="IReadOnlyPropertyBase" /> in the Entity Framework model that represents an
+    ///         injected service from the <see cref="DbContext" />.
+    ///     </para>
+    ///     <para>
+    ///         This interface is used after the model building is finished and doesn't allow the metadata to be modified.
+    ///     </para>
     /// </summary>
-    public interface IServiceProperty : IPropertyBase
+    public interface IServiceProperty : IReadOnlyServiceProperty, IPropertyBase
     {
         /// <summary>
-        ///     Gets the entity type that this property belongs to.
+        ///     Gets the type that this property belongs to.
         /// </summary>
-        IEntityType DeclaringEntityType { get; }
-
-        /// <summary>
-        ///     The <see cref="ServiceParameterBinding" /> for this property.
-        /// </summary>
-        ServiceParameterBinding? ParameterBinding { get; }
+        new IEntityType DeclaringEntityType { get; }
     }
 }

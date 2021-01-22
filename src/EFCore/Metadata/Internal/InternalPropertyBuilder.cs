@@ -360,7 +360,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
         {
             if (valueGeneratorType == null)
             {
-                return HasValueGenerator((Func<IProperty, IEntityType, ValueGenerator>?)null, configurationSource);
+                return HasValueGenerator((Func<IReadOnlyProperty, IReadOnlyEntityType, ValueGenerator>?)null, configurationSource);
             }
 
             if (!typeof(ValueGenerator).IsAssignableFrom(valueGeneratorType))
@@ -663,7 +663,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
             if (oldPropertyAccessModeConfigurationSource.HasValue)
             {
                 newPropertyBuilder.UsePropertyAccessMode(
-                    ((IProperty)Metadata).GetPropertyAccessMode(), oldPropertyAccessModeConfigurationSource.Value);
+                    ((IReadOnlyProperty)Metadata).GetPropertyAccessMode(), oldPropertyAccessModeConfigurationSource.Value);
             }
 
             var oldFieldInfoConfigurationSource = Metadata.GetFieldInfoConfigurationSource();
@@ -970,7 +970,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
         IConventionPropertyBuilder? IConventionPropertyBuilder.HasValueGenerator(
-            Func<IProperty, IEntityType, ValueGenerator>? factory,
+            Func<IReadOnlyProperty, IReadOnlyEntityType, ValueGenerator>? factory,
             bool fromDataAnnotation)
             => HasValueGenerator(factory, fromDataAnnotation ? ConfigurationSource.DataAnnotation : ConfigurationSource.Convention);
 
@@ -980,7 +980,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        bool IConventionPropertyBuilder.CanSetValueGenerator(Func<IProperty, IEntityType, ValueGenerator>? factory, bool fromDataAnnotation)
+        bool IConventionPropertyBuilder.CanSetValueGenerator(Func<IReadOnlyProperty, IReadOnlyEntityType, ValueGenerator>? factory, bool fromDataAnnotation)
             => CanSetValueGenerator(factory, fromDataAnnotation ? ConfigurationSource.DataAnnotation : ConfigurationSource.Convention);
 
         /// <summary>

@@ -301,7 +301,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
         ///     <see langword="null" /> otherwise.
         /// </returns>
         IConventionPropertyBuilder? HasValueGenerator(
-            [CanBeNull] Func<IProperty, IEntityType, ValueGenerator>? factory,
+            [CanBeNull] Func<IReadOnlyProperty, IReadOnlyEntityType, ValueGenerator>? factory,
             bool fromDataAnnotation = false);
 
         /// <summary>
@@ -318,7 +318,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
         ///     <see langword="true" /> if the <see cref="ValueGenerator" /> can be configured for this property.
         /// </returns>
         bool CanSetValueGenerator(
-            [CanBeNull] Func<IProperty, IEntityType, ValueGenerator>? factory,
+            [CanBeNull] Func<IReadOnlyProperty, IReadOnlyEntityType, ValueGenerator>? factory,
             bool fromDataAnnotation = false);
 
         /// <summary>

@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 #nullable enable
@@ -9,20 +10,32 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace Microsoft.EntityFrameworkCore.Metadata
 {
     /// <summary>
-    ///     Represents a primary or alternate key on an entity.
+    ///     <para>
+    ///         Represents a primary or alternate key on an entity.
+    ///     </para>
+    ///     <para>
+    ///         This interface is used after the model building is finished and doesn't allow the metadata to be modified.
+    ///     </para>
     /// </summary>
-    public interface IKey : IAnnotatable
+    public interface IKey : IReadOnlyKey, IAnnotatable
     {
         /// <summary>
         ///     Gets the properties that make up the key.
         /// </summary>
-        IReadOnlyList<IProperty> Properties { get; }
+        new IReadOnlyList<IProperty> Properties { get; }
 
         /// <summary>
         ///     Gets the entity type the key is defined on. This may be different from the type that <see cref="Properties" />
         ///     are defined on when the key is defined a derived type in an inheritance hierarchy (since the properties
         ///     may be defined on a base type).
         /// </summary>
-        IEntityType DeclaringEntityType { get; }
+        new IEntityType DeclaringEntityType { get; }
+
+        /// <summary>
+        ///     Gets all foreign keys that target a given primary or alternate key.
+        /// </summary>
+        /// <returns> The foreign keys that reference the given key. </returns>
+        IEnumerable<IForeignKey> GetReferencingForeignKeys()
+            => ((IReadOnlyKey)this).GetReferencingForeignKeys().Cast<IForeignKey>();
     }
 }

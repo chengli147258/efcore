@@ -503,7 +503,7 @@ namespace Microsoft.EntityFrameworkCore.Migrations.Internal
                 model = mutableModel.FinalizeModel();
             }
 
-            return _modelRuntimeInitializer.Initialize(model, validationLogger: null);
+            return _modelRuntimeInitializer.Initialize((IModel)model, validationLogger: null);
         }
     }
 }

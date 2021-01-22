@@ -22,7 +22,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
     ///         Once the model is built, <see cref="IModel" /> represents a read-only view of the same metadata.
     ///     </para>
     /// </summary>
-    public interface IMutableModel : IModel, IMutableAnnotatable
+    public interface IMutableModel : IReadOnlyModel, IMutableAnnotatable
     {
         /// <summary>
         ///     <para>

@@ -30,9 +30,9 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Conventions
         protected virtual ProviderConventionSetBuilderDependencies Dependencies { get; }
 
         /// <inheritdoc />
-        public virtual IModel ProcessModelFinalized(IModel model)
+        public virtual IReadOnlyModel ProcessModelFinalized(IReadOnlyModel model)
         {
-            Dependencies.ModelValidator.Validate(model, Dependencies.ValidationLogger);
+            Dependencies.ModelValidator.Validate((IModel)model, Dependencies.ValidationLogger);
             return model;
         }
     }

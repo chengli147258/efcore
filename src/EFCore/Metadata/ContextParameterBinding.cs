@@ -13,7 +13,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
 {
     /// <summary>
     ///     Describes the binding of a <see cref="DbContext" />, which may or may not also have and associated
-    ///     <see cref="IServiceProperty" />, to a parameter in a constructor, factory method, or similar.
+    ///     <see cref="IReadOnlyServiceProperty" />, to a parameter in a constructor, factory method, or similar.
     /// </summary>
     public class ContextParameterBinding : ServiceParameterBinding
     {
@@ -21,7 +21,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         ///     Creates a new <see cref="ServiceParameterBinding" /> instance for the given service type.
         /// </summary>
         /// <param name="contextType"> The <see cref="DbContext" /> CLR type. </param>
-        /// <param name="serviceProperty"> The associated <see cref="IServiceProperty" />, or <see langword="null" />. </param>
+        /// <param name="serviceProperty"> The associated <see cref="IReadOnlyServiceProperty" />, or <see langword="null" />. </param>
         public ContextParameterBinding(
             [NotNull] Type contextType,
             [CanBeNull] IPropertyBase? serviceProperty = null)
@@ -34,7 +34,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         ///     materialization expression to a parameter of the constructor, factory method, etc.
         /// </summary>
         /// <param name="materializationExpression"> The expression representing the materialization context. </param>
-        /// <param name="entityTypeExpression"> The expression representing the <see cref="IEntityType" /> constant. </param>
+        /// <param name="entityTypeExpression"> The expression representing the <see cref="IReadOnlyEntityType" /> constant. </param>
         /// <returns> The expression tree. </returns>
         public override Expression BindToParameter(
             Expression materializationExpression,

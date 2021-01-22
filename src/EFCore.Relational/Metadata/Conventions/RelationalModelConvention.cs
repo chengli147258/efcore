@@ -34,9 +34,9 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Conventions
         protected virtual RelationalConventionSetBuilderDependencies RelationalDependencies { get; }
 
         /// <inheritdoc />
-        public virtual IModel ProcessModelFinalized(IModel model)
-            => model is IConventionModel conventionModel
-                ? RelationalModel.Add(conventionModel, RelationalDependencies.RelationalAnnotationProvider)
+        public virtual IReadOnlyModel ProcessModelFinalized(IReadOnlyModel model)
+            => model is IModel runtimeModel
+                ? RelationalModel.Add(runtimeModel, RelationalDependencies.RelationalAnnotationProvider)
                 : model;
     }
 }
