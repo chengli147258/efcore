@@ -118,7 +118,7 @@ namespace Microsoft.EntityFrameworkCore.Storage
         ///         a field or a property of a CLR type.
         ///     </para>
         ///     <para>
-        ///         Note: Only call this method if there is no <see cref="IyProperty" /> available, otherwise
+        ///         Note: Only call this method if there is no <see cref="IProperty" /> available, otherwise
         ///         call <see cref="FindMapping(IProperty)" />
         ///     </para>
         ///     <para>

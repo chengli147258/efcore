@@ -18,7 +18,7 @@ using Microsoft.EntityFrameworkCore.Utilities;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Relational-specific extension methods for <see cref="IModel" /> and extension methods for <see cref="IRelationalModel" />.
+    ///     Relational-specific model extension methods.
     /// </summary>
     public static class RelationalModelExtensions
     {
@@ -182,13 +182,13 @@ namespace Microsoft.EntityFrameworkCore
             => model.FindAnnotation(RelationalAnnotationNames.MaxIdentifierLength)?.GetConfigurationSource();
 
         /// <summary>
-        ///     Finds an <see cref="IReadOnlySequence" /> with the given name.
+        ///     Finds a sequence with the given name.
         /// </summary>
         /// <param name="model"> The model to find the sequence in. </param>
         /// <param name="name"> The sequence name. </param>
         /// <param name="schema"> The schema that contains the sequence. </param>
         /// <returns>
-        ///     The <see cref="IReadOnlySequence" /> or <see langword="null" /> if no sequence with the given name in
+        ///     The sequence or <see langword="null" /> if no sequence with the given name in
         ///     the given schema was found.
         /// </returns>
         public static IReadOnlySequence? FindSequence(
@@ -199,13 +199,13 @@ namespace Microsoft.EntityFrameworkCore
                 Check.NotNull(model, nameof(model)), Check.NotEmpty(name, nameof(name)), Check.NullButNotEmpty(schema, nameof(schema)));
 
         /// <summary>
-        ///     Finds an <see cref="IMutableSequence" /> with the given name.
+        ///     Finds a sequence with the given name.
         /// </summary>
         /// <param name="model"> The model to find the sequence in. </param>
         /// <param name="name"> The sequence name. </param>
         /// <param name="schema"> The schema that contains the sequence. </param>
         /// <returns>
-        ///     The <see cref="IMutableSequence" /> or <see langword="null" /> if no sequence with the given name in
+        ///     The sequence or <see langword="null" /> if no sequence with the given name in
         ///     the given schema was found.
         /// </returns>
         public static IMutableSequence? FindSequence(
@@ -215,13 +215,13 @@ namespace Microsoft.EntityFrameworkCore
             => (IMutableSequence?)((IReadOnlyModel)model).FindSequence(name, schema);
 
         /// <summary>
-        ///     Finds an <see cref="IConventionSequence" /> with the given name.
+        ///     Finds a sequence with the given name.
         /// </summary>
         /// <param name="model"> The model to find the sequence in. </param>
         /// <param name="name"> The sequence name. </param>
         /// <param name="schema"> The schema that contains the sequence. </param>
         /// <returns>
-        ///     The <see cref="IConventionSequence" /> or <see langword="null" /> if no sequence with the given name in
+        ///     The sequence or <see langword="null" /> if no sequence with the given name in
         ///     the given schema was found.
         /// </returns>
         public static IConventionSequence? FindSequence(
@@ -231,13 +231,13 @@ namespace Microsoft.EntityFrameworkCore
             => (IConventionSequence?)((IReadOnlyModel)model).FindSequence(name, schema);
 
         /// <summary>
-        ///     Finds an <see cref="IReadOnlySequence" /> with the given name.
+        ///     Finds a sequence with the given name.
         /// </summary>
         /// <param name="model"> The model to find the sequence in. </param>
         /// <param name="name"> The sequence name. </param>
         /// <param name="schema"> The schema that contains the sequence. </param>
         /// <returns>
-        ///     The <see cref="IReadOnlySequence" /> or <see langword="null" /> if no sequence with the given name in
+        ///     The sequence or <see langword="null" /> if no sequence with the given name in
         ///     the given schema was found.
         /// </returns>
         public static ISequence? FindSequence(
@@ -339,78 +339,78 @@ namespace Microsoft.EntityFrameworkCore
             => Sequence.GetSequences(Check.NotNull(model, nameof(model)));
 
         /// <summary>
-        ///     Finds a <see cref="IReadOnlyDbFunction" /> that is mapped to the method represented by the given <see cref="MethodInfo" />.
+        ///     Finds a function that is mapped to the method represented by the given <see cref="MethodInfo" />.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="method"> The <see cref="MethodInfo" /> for the method that is mapped to the function. </param>
-        /// <returns> The <see cref="IReadOnlyDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The function or <see langword="null" /> if the method is not mapped. </returns>
         public static IReadOnlyDbFunction? FindDbFunction([NotNull] this IReadOnlyModel model, [NotNull] MethodInfo method)
             => DbFunction.FindDbFunction(
                 Check.NotNull(model, nameof(model)),
                 Check.NotNull(method, nameof(method)));
 
         /// <summary>
-        ///     Finds a <see cref="IMutableDbFunction" /> that is mapped to the method represented by the given <see cref="MethodInfo" />.
+        ///     Finds a function that is mapped to the method represented by the given <see cref="MethodInfo" />.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="method"> The <see cref="MethodInfo" /> for the method that is mapped to the function. </param>
-        /// <returns> The <see cref="IMutableDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The function or <see langword="null" /> if the method is not mapped. </returns>
         public static IMutableDbFunction? FindDbFunction([NotNull] this IMutableModel model, [NotNull] MethodInfo method)
             => (IMutableDbFunction?)((IReadOnlyModel)model).FindDbFunction(method);
 
         /// <summary>
-        ///     Finds a <see cref="IConventionDbFunction" /> that is mapped to the method represented by the given <see cref="MethodInfo" />.
+        ///     Finds a function that is mapped to the method represented by the given <see cref="MethodInfo" />.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="method"> The <see cref="MethodInfo" /> for the method that is mapped to the function. </param>
-        /// <returns> The <see cref="IConventionDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The function or <see langword="null" /> if the method is not mapped. </returns>
         public static IConventionDbFunction? FindDbFunction([NotNull] this IConventionModel model, [NotNull] MethodInfo method)
             => (IConventionDbFunction?)((IReadOnlyModel)model).FindDbFunction(method);
 
         /// <summary>
-        ///     Finds a <see cref="IDbFunction" /> that is mapped to the method represented by the given <see cref="MethodInfo" />.
+        ///     Finds a function that is mapped to the method represented by the given <see cref="MethodInfo" />.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="method"> The <see cref="MethodInfo" /> for the method that is mapped to the function. </param>
-        /// <returns> The <see cref="IDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The function or <see langword="null" /> if the method is not mapped. </returns>
         public static IDbFunction? FindDbFunction([NotNull] this IModel model, [NotNull] MethodInfo method)
             => (IDbFunction?)((IReadOnlyModel)model).FindDbFunction(method);
 
         /// <summary>
-        ///     Finds an <see cref="IDbFunction" /> that is mapped to the method represented by the given name.
+        ///     Finds a function that is mapped to the method represented by the given name.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="name"> The model name of the function. </param>
-        /// <returns> The <see cref="IDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The function or <see langword="null" /> if the method is not mapped. </returns>
         public static IReadOnlyDbFunction? FindDbFunction([NotNull] this IReadOnlyModel model, [NotNull] string name)
             => DbFunction.FindDbFunction(
                 Check.NotNull(model, nameof(model)),
                 Check.NotNull(name, nameof(name)));
 
         /// <summary>
-        ///     Finds an <see cref="IMutableDbFunction" /> that is mapped to the method represented by the given name.
+        ///     Finds a function that is mapped to the method represented by the given name.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="name"> The model name of the function. </param>
-        /// <returns> The <see cref="IMutableDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The function or <see langword="null" /> if the method is not mapped. </returns>
         public static IMutableDbFunction? FindDbFunction([NotNull] this IMutableModel model, [NotNull] string name)
             => (IMutableDbFunction?)((IModel)model).FindDbFunction(name);
 
         /// <summary>
-        ///     Finds an <see cref="IConventionDbFunction" /> that is mapped to the method represented by the given name.
+        ///     Finds a function that is mapped to the method represented by the given name.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="name"> The model name of the function. </param>
-        /// <returns> The <see cref="IConventionDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The function or <see langword="null" /> if the method is not mapped. </returns>
         public static IConventionDbFunction? FindDbFunction([NotNull] this IConventionModel model, [NotNull] string name)
             => (IConventionDbFunction?)((IModel)model).FindDbFunction(name);
 
         /// <summary>
-        ///     Finds an <see cref="IDbFunction" /> that is mapped to the method represented by the given name.
+        ///     Finds a function that is mapped to the method represented by the given name.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="name"> The model name of the function. </param>
-        /// <returns> The <see cref="IDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The function or <see langword="null" /> if the method is not mapped. </returns>
         public static IDbFunction? FindDbFunction([NotNull] this IModel model, [NotNull] string name)
             => (IDbFunction?)((IReadOnlyModel)model).FindDbFunction(name);
 
@@ -425,12 +425,12 @@ namespace Microsoft.EntityFrameworkCore
                 model, Check.NotNull(methodInfo, nameof(methodInfo)), ConfigurationSource.Explicit)!;
 
         /// <summary>
-        ///     Creates an <see cref="IConventionDbFunction" /> mapped to the given method.
+        ///     Creates a function mapped to the given method.
         /// </summary>
         /// <param name="model"> The model to add the function to. </param>
         /// <param name="methodInfo"> The <see cref="MethodInfo" /> for the method that is mapped to the function. </param>
         /// <param name="fromDataAnnotation"> Indicates whether the configuration was specified using a data annotation. </param>
-        /// <returns> The new <see cref="IConventionDbFunction" />. </returns>
+        /// <returns> The new function. </returns>
         public static IConventionDbFunction AddDbFunction(
             [NotNull] this IConventionModel model,
             [NotNull] MethodInfo methodInfo,
@@ -440,12 +440,12 @@ namespace Microsoft.EntityFrameworkCore
                 fromDataAnnotation ? ConfigurationSource.DataAnnotation : ConfigurationSource.Convention);
 
         /// <summary>
-        ///     Creates an <see cref="IMutableDbFunction" />.
+        ///     Creates a function.
         /// </summary>
         /// <param name="model"> The model to add the function to. </param>
         /// <param name="name"> The model name of the function. </param>
         /// <param name="returnType"> The function return type. </param>
-        /// <returns> The new <see cref="IMutableDbFunction" />. </returns>
+        /// <returns> The new function. </returns>
         public static IMutableDbFunction AddDbFunction(
             [NotNull] this IMutableModel model,
             [NotNull] string name,
@@ -454,13 +454,13 @@ namespace Microsoft.EntityFrameworkCore
                 model, Check.NotNull(name, nameof(name)), returnType, ConfigurationSource.Explicit);
 
         /// <summary>
-        ///     Creates an <see cref="IConventionDbFunction" />.
+        ///     Creates a function.
         /// </summary>
         /// <param name="model"> The model to add the function to. </param>
         /// <param name="name"> The model name of the function. </param>
         /// <param name="returnType"> The function return type. </param>
         /// <param name="fromDataAnnotation"> Indicates whether the configuration was specified using a data annotation. </param>
-        /// <returns> The new <see cref="IConventionDbFunction" />. </returns>
+        /// <returns> The new function. </returns>
         public static IConventionDbFunction AddDbFunction(
             [NotNull] this IConventionModel model,
             [NotNull] string name,
@@ -473,72 +473,72 @@ namespace Microsoft.EntityFrameworkCore
                 fromDataAnnotation ? ConfigurationSource.DataAnnotation : ConfigurationSource.Convention);
 
         /// <summary>
-        ///     Removes the <see cref="IMutableDbFunction" /> that is mapped to the method represented by the given
+        ///     Removes the function that is mapped to the method represented by the given
         ///     <see cref="MethodInfo" />.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="method"> The <see cref="MethodInfo" /> for the method that is mapped to the function. </param>
-        /// <returns> The removed <see cref="IMutableDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The removed function or <see langword="null" /> if the method is not mapped. </returns>
         public static IMutableDbFunction? RemoveDbFunction([NotNull] this IMutableModel model, [NotNull] MethodInfo method)
             => DbFunction.RemoveDbFunction(
                 Check.NotNull(model, nameof(model)),
                 Check.NotNull(method, nameof(method)));
 
         /// <summary>
-        ///     Removes the <see cref="IConventionDbFunction" /> that is mapped to the method represented by the given
+        ///     Removes the function that is mapped to the method represented by the given
         ///     <see cref="MethodInfo" />.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="method"> The <see cref="MethodInfo" /> for the method that is mapped to the function. </param>
-        /// <returns> The removed <see cref="IConventionDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The removed function or <see langword="null" /> if the method is not mapped. </returns>
         public static IConventionDbFunction? RemoveDbFunction([NotNull] this IConventionModel model, [NotNull] MethodInfo method)
             => (IConventionDbFunction?)((IMutableModel)model).RemoveDbFunction(method);
 
         /// <summary>
-        ///     Removes the <see cref="IMutableDbFunction" /> that is mapped to the method represented by the given
+        ///     Removes the function that is mapped to the method represented by the given
         ///     <see cref="MethodInfo" />.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="name"> The model name of the function. </param>
-        /// <returns> The removed <see cref="IMutableDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The removed function or <see langword="null" /> if the method is not mapped. </returns>
         public static IMutableDbFunction? RemoveDbFunction([NotNull] this IMutableModel model, [NotNull] string name)
             => DbFunction.RemoveDbFunction(
                 Check.NotNull(model, nameof(model)),
                 Check.NotNull(name, nameof(name)));
 
         /// <summary>
-        ///     Removes the <see cref="IConventionDbFunction" /> that is mapped to the method represented by the given
+        ///     Removes the function that is mapped to the method represented by the given
         ///     <see cref="MethodInfo" />.
         /// </summary>
         /// <param name="model"> The model to find the function in. </param>
         /// <param name="name"> The model name of the function. </param>
-        /// <returns> The removed <see cref="IConventionDbFunction" /> or <see langword="null" /> if the method is not mapped. </returns>
+        /// <returns> The removed function or <see langword="null" /> if the method is not mapped. </returns>
         public static IConventionDbFunction? RemoveDbFunction([NotNull] this IConventionModel model, [NotNull] string name)
             => (IConventionDbFunction?)((IMutableModel)model).RemoveDbFunction(name);
 
         /// <summary>
-        ///     Returns all <see cref="IReadOnlyDbFunction" />s contained in the model.
+        ///     Returns all functions contained in the model.
         /// </summary>
         /// <param name="model"> The model to get the functions in. </param>
         public static IEnumerable<IReadOnlyDbFunction> GetDbFunctions([NotNull] this IModel model)
             => DbFunction.GetDbFunctions(Check.NotNull(model, nameof(model)));
 
         /// <summary>
-        ///     Returns all <see cref="IMutableDbFunction" />s contained in the model.
+        ///     Returns all functions contained in the model.
         /// </summary>
         /// <param name="model"> The model to get the functions in. </param>
         public static IEnumerable<IMutableDbFunction> GetDbFunctions([NotNull] this IMutableModel model)
             => DbFunction.GetDbFunctions((Model)Check.NotNull(model, nameof(model)));
 
         /// <summary>
-        ///     Returns all <see cref="IConventionDbFunction" />s contained in the model.
+        ///     Returns all functions contained in the model.
         /// </summary>
         /// <param name="model"> The model to get the functions in. </param>
         public static IEnumerable<IConventionDbFunction> GetDbFunctions([NotNull] this IConventionModel model)
             => DbFunction.GetDbFunctions((Model)Check.NotNull(model, nameof(model)));
 
         /// <summary>
-        ///     Returns all <see cref="IDbFunction" />s contained in the model.
+        ///     Returns all functions contained in the model.
         /// </summary>
         /// <param name="model"> The model to get the functions in. </param>
         public static IEnumerable<IDbFunction> GetDbFunctions([NotNull] this IReadOnlyModel model)

@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore.Utilities;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IEntityType" /> for relational database metadata.
+    ///     Entity type extension methods for relational database metadata.
     /// </summary>
     public static class RelationalEntityTypeExtensions
     {

@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore.Utilities;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IForeignKey" /> for relational database metadata.
+    ///     Foregn key extension methods for relational database metadata.
     /// </summary>
     public static class RelationalForeignKeyExtensions
     {

@@ -628,14 +628,14 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
         private static void AddTVFs(RelationalModel relationalModel)
         {
             var model = relationalModel.Model;
-            foreach (var function in relationalModel.Model.GetDbFunctions())
+            foreach (DbFunction function in relationalModel.Model.GetDbFunctions())
             {
                 var entityType = function.IsScalar
                     ? null
                     : model.FindEntityType(function.ReturnType.GetGenericArguments()[0]);
                 if (entityType == null)
                 {
-                    GetOrCreateStoreFunction((DbFunction)function, relationalModel);
+                    GetOrCreateStoreFunction(function, relationalModel);
                     continue;
                 }
 
@@ -644,7 +644,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                     continue;
                 }
 
-                var functionMapping = CreateFunctionMapping(entityType, entityType, (DbFunction)function, relationalModel, @default: false);
+                var functionMapping = CreateFunctionMapping(entityType, entityType, function, relationalModel, @default: false);
 
                 if (entityType.FindRuntimeAnnotationValue(RelationalAnnotationNames.FunctionMappings)
                     is not List<FunctionMapping> functionMappings)

@@ -34,7 +34,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         ///     or the entity type has a defining navigation.
         /// </summary>
         /// <param name="name"> The name of the entity type to find. </param>
-        /// <returns> The entity type, or <see langword="null" /> if none are found. </returns>
+        /// <returns> The entity type, or <see langword="null" /> if none is found. </returns>
         new IEntityType? FindEntityType([NotNull] string name);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         /// <param name="name"> The name of the entity type to find. </param>
         /// <param name="definingNavigationName"> The defining navigation of the entity type to find. </param>
         /// <param name="definingEntityType"> The defining entity type of the entity type to find. </param>
-        /// <returns> The entity type, or <see langword="null" /> if none are found. </returns>
+        /// <returns> The entity type, or <see langword="null" /> if none is found. </returns>
         IEntityType? FindEntityType(
             [NotNull] string name,
             [NotNull] string definingNavigationName,
@@ -57,7 +57,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         ///     or the entity type has a defining navigation.
         /// </summary>
         /// <param name="type"> The type to find the corresponding entity type for. </param>
-        /// <returns> The entity type, or <see langword="null" /> if none if found. </returns>
+        /// <returns> The entity type, or <see langword="null" /> if none is found. </returns>
         IEntityType? FindRuntimeEntityType([NotNull] Type type)
         {
             Check.NotNull(type, nameof(type));
@@ -103,7 +103,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         ///     or the entity type has a defining navigation.
         /// </summary>
         /// <param name="type"> The type to find the corresponding entity type for. </param>
-        /// <returns> The entity type, or <see langword="null" /> if none if found. </returns>
+        /// <returns> The entity type, or <see langword="null" /> if none is found. </returns>
         IEntityType? FindEntityType([NotNull] Type type);
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         /// <param name="type"> The type of the entity type to find. </param>
         /// <param name="definingNavigationName"> The defining navigation of the entity type to find. </param>
         /// <param name="definingEntityType"> The defining entity type of the entity type to find. </param>
-        /// <returns> The entity type, or <see langword="null" /> if none are found. </returns>
+        /// <returns> The entity type, or <see langword="null" /> if none is found. </returns>
         IEntityType? FindEntityType(
             [NotNull] Type type,
             [NotNull] string definingNavigationName,

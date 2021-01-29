@@ -8,8 +8,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace Microsoft.EntityFrameworkCore.Metadata
 {
     /// <summary>
-    ///     Represents a database sequence in the <see cref="IModel" /> in a form that
-    ///     can be mutated while building the model.
+    ///     Represents a database sequence in the model.
     /// </summary>
     public interface ISequence : IReadOnlySequence, IAnnotatable
     {

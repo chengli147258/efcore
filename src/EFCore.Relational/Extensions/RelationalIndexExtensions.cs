@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore.Utilities;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IIndex" /> for relational database metadata.
+    ///     Index extension methods for relational database metadata.
     /// </summary>
     public static class RelationalIndexExtensions
     {

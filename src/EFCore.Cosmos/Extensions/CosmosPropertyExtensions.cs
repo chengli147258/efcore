@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IReadOnlyProperty" /> for Cosmos metadata.
+    ///     Property extension methods for Cosmos metadata.
     /// </summary>
     public static class CosmosPropertyExtensions
     {

@@ -97,7 +97,7 @@ namespace Microsoft.EntityFrameworkCore.TestUtilities
 
                     if (operations.Count > 0)
                     {
-                        var commands = sqlGenerator.Generate(operations, (IModel)null);
+                        var commands = sqlGenerator.Generate(operations, null);
                         executor.ExecuteNonQuery(commands, connection);
                     }
 

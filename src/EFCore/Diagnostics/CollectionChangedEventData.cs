@@ -53,7 +53,7 @@ namespace Microsoft.EntityFrameworkCore.Diagnostics
         /// <summary>
         ///     The navigation.
         /// </summary>
-        new public virtual INavigation Navigation => (INavigation)base.Navigation;
+        public new virtual INavigation Navigation => (INavigation)base.Navigation;
 
         /// <summary>
         ///     The entities added to the collection.

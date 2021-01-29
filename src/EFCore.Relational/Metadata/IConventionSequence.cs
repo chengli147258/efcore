@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Microsoft.EntityFrameworkCore.Metadata
 {
     /// <summary>
-    ///     Represents a database sequence in the <see cref="IConventionModel" /> in a form that
+    ///     Represents a database sequence in the model in a form that
     ///     can be mutated while building the model.
     /// </summary>
     public interface IConventionSequence : IReadOnlySequence, IConventionAnnotatable

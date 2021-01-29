@@ -21,7 +21,7 @@ using Microsoft.EntityFrameworkCore.Utilities;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IProperty" /> for relational database metadata.
+    ///     Property extension methods for relational database metadata.
     /// </summary>
     public static class RelationalPropertyExtensions
     {

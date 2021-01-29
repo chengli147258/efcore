@@ -32,7 +32,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         /// <summary>
         ///     Gets the store type of this parameter.
         /// </summary>
-        string StoreType { get; }
+        string? StoreType { get; }
 
         /// <summary>
         ///     Gets the value which indicates whether parameter propagates nullability, meaning if it's value is null the database function itself
@@ -43,12 +43,6 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         /// <summary>
         ///     Gets the <see cref="RelationalTypeMapping" /> for this parameter.
         /// </summary>
-        RelationalTypeMapping TypeMapping { get; }
-
-        /// <summary>
-        ///     Gets the associated <see cref="IStoreFunctionParameter" />.
-        /// </summary>
-        // TODO-NULLABLE: Not sure about what this is for or if it should be nullable
-        IStoreFunctionParameter? StoreFunctionParameter { get; }
+        RelationalTypeMapping? TypeMapping { get; }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace Microsoft.EntityFrameworkCore.Metadata
 {
     /// <summary>
-    ///     Represents a database sequence in the <see cref="IReadOnlyModel" />.
+    ///     Represents a database sequence in the model.
     /// </summary>
     public interface IReadOnlySequence : IReadOnlyAnnotatable
     {

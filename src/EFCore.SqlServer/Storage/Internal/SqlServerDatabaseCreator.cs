@@ -184,7 +184,7 @@ SELECT 1 ELSE SELECT 0");
                         Collation = Dependencies.Model.GetCollation()
                     }
                 },
-                (IModel?)null);
+                null);
         }
 
         /// <summary>
@@ -391,7 +391,7 @@ SELECT 1 ELSE SELECT 0");
 
             var operations = new MigrationOperation[] { new SqlServerDropDatabaseOperation { Name = databaseName } };
 
-            return Dependencies.MigrationsSqlGenerator.Generate(operations, (IModel?)null);
+            return Dependencies.MigrationsSqlGenerator.Generate(operations, null);
         }
 
         // Clear connection pools in case there are active connections that are pooled

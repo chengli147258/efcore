@@ -49,7 +49,7 @@ namespace Microsoft.EntityFrameworkCore.Diagnostics
         /// <summary>
         ///     The property.
         /// </summary>
-        new public virtual IProperty Property => (IProperty)base.Property;
+        public new virtual IProperty Property => (IProperty)base.Property;
 
         /// <summary>
         ///     The old value.

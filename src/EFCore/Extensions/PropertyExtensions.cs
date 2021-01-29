@@ -515,14 +515,11 @@ namespace Microsoft.EntityFrameworkCore
                 && ((Annotatable)property).IsReadOnly)
             {
                 var indexes = ((IProperty)property).GetPropertyIndexes();
-                if (indexes != null)
-                {
-                    builder.Append(" ").Append(indexes.Index);
-                    builder.Append(" ").Append(indexes.OriginalValueIndex);
-                    builder.Append(" ").Append(indexes.RelationshipIndex);
-                    builder.Append(" ").Append(indexes.ShadowIndex);
-                    builder.Append(" ").Append(indexes.StoreGenerationIndex);
-                }
+                builder.Append(" ").Append(indexes.Index);
+                builder.Append(" ").Append(indexes.OriginalValueIndex);
+                builder.Append(" ").Append(indexes.RelationshipIndex);
+                builder.Append(" ").Append(indexes.ShadowIndex);
+                builder.Append(" ").Append(indexes.StoreGenerationIndex);
             }
 
             if (!singleLine && (options & MetadataDebugStringOptions.IncludeAnnotations) != 0)

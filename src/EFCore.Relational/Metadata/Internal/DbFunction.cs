@@ -754,7 +754,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
             => SetTranslation(translation, fromDataAnnotation ? ConfigurationSource.DataAnnotation : ConfigurationSource.Convention);
 
         /// <inheritdoc />
-        IStoreFunction IReadOnlyDbFunction.StoreFunction
+        IStoreFunction IDbFunction.StoreFunction
             => StoreFunction!; // Relational model creation ensures StoreFunction is populated
     }
 }

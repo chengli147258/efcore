@@ -30,7 +30,7 @@ namespace Microsoft.EntityFrameworkCore
         /// </summary>
         /// <param name="model"> The model to find the entity type in. </param>
         /// <param name="type"> The type to find the corresponding entity type for. </param>
-        /// <returns> The entity type, or <see langword="null" /> if none if found. </returns>
+        /// <returns> The entity type, or <see langword="null" /> if none is found. </returns>
         [DebuggerStepThrough]
         public static IReadOnlyEntityType? FindEntityType([NotNull] this IReadOnlyModel model, [NotNull] Type type)
             => ((Model)model).FindEntityType(Check.NotNull(type, nameof(type)));
@@ -43,7 +43,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="type"> The type of the entity type to find. </param>
         /// <param name="definingNavigationName"> The defining navigation of the entity type to find. </param>
         /// <param name="definingEntityType"> The defining entity type of the entity type to find. </param>
-        /// <returns> The entity type, or <see langword="null" /> if none are found. </returns>
+        /// <returns> The entity type, or <see langword="null" /> if none is found. </returns>
         [DebuggerStepThrough]
         public static IReadOnlyEntityType? FindEntityType(
             [NotNull] this IReadOnlyModel model,
@@ -191,7 +191,7 @@ namespace Microsoft.EntityFrameworkCore
         ///     </para>
         /// </summary>
         /// <param name="model"> The model to get the access mode for. </param>
-        /// <returns> The access mode being used, or null if the default access mode is being used. </returns>
+        /// <returns> The access mode being used. </returns>
         [DebuggerStepThrough]
         public static PropertyAccessMode GetPropertyAccessMode([NotNull] this IReadOnlyModel model)
             => (PropertyAccessMode?)Check.NotNull(model, nameof(model))[CoreAnnotationNames.PropertyAccessMode]

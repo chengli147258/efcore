@@ -23,5 +23,10 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         ///     Gets the parameters for this function
         /// </summary>
         new IReadOnlyList<IDbFunctionParameter> Parameters { get; }
+
+        /// <summary>
+        ///     Gets the associated <see cref="IStoreFunction" />.
+        /// </summary>
+        IStoreFunction StoreFunction { get; }
     }
 }

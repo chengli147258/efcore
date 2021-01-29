@@ -88,10 +88,5 @@ namespace Microsoft.EntityFrameworkCore.Metadata
         ///     Gets the translation callback for performing custom translation of the method call into a SQL expression fragment.
         /// </summary>
         Func<IReadOnlyList<SqlExpression>, SqlExpression>? Translation { get; }
-
-        /// <summary>
-        ///     Gets the associated <see cref="IStoreFunction" />.
-        /// </summary>
-        IStoreFunction StoreFunction { get; }
     }
 }

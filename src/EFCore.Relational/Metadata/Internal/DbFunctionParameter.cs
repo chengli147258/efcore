@@ -162,7 +162,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
         }
 
         // Model validation ensures all parameters have a type mapping
-        RelationalTypeMapping IReadOnlyDbFunctionParameter.TypeMapping
+        RelationalTypeMapping IDbFunctionParameter.TypeMapping
             => _typeMapping!;
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
             => this.ToDebugString(MetadataDebugStringOptions.SingleLineDefault);
 
         /// <inheritdoc />
-        string IReadOnlyDbFunctionParameter.StoreType
+        string IDbFunctionParameter.StoreType
         {
             [DebuggerStepThrough]
             get => StoreType!; // Model validation ensures all parameters have a type mapping
