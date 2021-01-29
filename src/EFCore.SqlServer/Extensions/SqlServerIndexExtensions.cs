@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore.SqlServer.Metadata.Internal;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IIndex" /> for SQL Server-specific metadata.
+    ///     Index extension methods for SQL Server-specific metadata.
     /// </summary>
     public static class SqlServerIndexExtensions
     {

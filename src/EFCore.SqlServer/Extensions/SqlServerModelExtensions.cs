@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Utilities;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IModel" /> for SQL Server-specific metadata.
+    ///     Model extension methods for SQL Server-specific metadata.
     /// </summary>
     public static class SqlServerModelExtensions
     {

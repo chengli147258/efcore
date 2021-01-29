@@ -628,7 +628,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
         private static void AddTVFs(RelationalModel relationalModel)
         {
             var model = relationalModel.Model;
-            foreach (DbFunction function in relationalModel.Model.GetDbFunctions())
+            foreach (DbFunction function in model.GetDbFunctions())
             {
                 var entityType = function.IsScalar
                     ? null

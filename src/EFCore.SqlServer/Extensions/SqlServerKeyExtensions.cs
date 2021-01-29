@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.SqlServer.Metadata.Internal;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IKey" /> for SQL Server-specific metadata.
+    ///     Key extension methods for SQL Server-specific metadata.
     /// </summary>
     public static class SqlServerKeyExtensions
     {

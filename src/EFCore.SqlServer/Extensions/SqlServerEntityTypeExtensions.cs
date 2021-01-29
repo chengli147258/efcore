@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.SqlServer.Metadata.Internal;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Extension methods for <see cref="IEntityType" /> for SQL Server-specific metadata.
+    ///     Entity type extension methods for SQL Server-specific metadata.
     /// </summary>
     public static class SqlServerEntityTypeExtensions
     {

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace Microsoft.EntityFrameworkCore.Metadata
 {
     /// <summary>
-    ///     Extension methods for <see cref="IReadOnlySequence" />.
+    ///     Sequence extension methods.
     /// </summary>
     public static class SequenceExtensions
     {
